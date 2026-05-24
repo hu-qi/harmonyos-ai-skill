@@ -48,6 +48,10 @@
 
 ## ⚡ 快速开始（Claude Code，30 秒）
 
+按你的系统选择对应命令——**直接复制粘贴**到终端即可：
+
+### 🍎 macOS
+
 ```bash
 git clone https://github.com/DengShiyingA/harmonyos-ai-skill.git ~/src/harmonyos-ai-skill
 mkdir -p ~/.claude/skills
@@ -55,7 +59,28 @@ ln -s ~/src/harmonyos-ai-skill/harmonyos-development ~/.claude/skills/harmonyos-
 # 重启 Claude Code，然后问："What skills are available?"
 ```
 
-用其他工具？查看[下方完整安装指南](#安装)。
+### 🐧 Linux
+
+```bash
+git clone https://github.com/DengShiyingA/harmonyos-ai-skill.git ~/src/harmonyos-ai-skill
+mkdir -p ~/.claude/skills
+ln -s ~/src/harmonyos-ai-skill/harmonyos-development ~/.claude/skills/harmonyos-development
+# 重启 Claude Code，然后问："What skills are available?"
+```
+
+### 🪟 Windows（PowerShell 7+）
+
+```powershell
+# 先开启「开发人员模式」：设置 → 隐私和安全性 → 开发者选项 → 打开（一次性）
+git clone https://github.com/DengShiyingA/harmonyos-ai-skill.git $HOME\src\harmonyos-ai-skill
+New-Item -ItemType Directory -Force $HOME\.claude\skills | Out-Null
+New-Item -ItemType SymbolicLink -Path $HOME\.claude\skills\harmonyos-development -Target $HOME\src\harmonyos-ai-skill\harmonyos-development
+# 重启 Claude Code，然后问："What skills are available?"
+```
+
+> 不想开发者模式？把 `New-Item -ItemType SymbolicLink ...` 换成 `Copy-Item -Recurse $HOME\src\harmonyos-ai-skill\harmonyos-development $HOME\.claude\skills\` 即可（但上游更新后需要重新复制）。
+
+用其他工具（Cursor / Copilot / ChatGPT ...）？查看[下方完整安装指南](#安装)。
 
 ---
 

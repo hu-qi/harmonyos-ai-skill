@@ -48,6 +48,10 @@ So I distilled the entire Huawei official documentation, best practices, and API
 
 ## ⚡ Quick start (Claude Code, 30 seconds)
 
+Pick the command set for your OS — **copy-paste straight into your terminal**:
+
+### 🍎 macOS
+
 ```bash
 git clone https://github.com/DengShiyingA/harmonyos-ai-skill.git ~/src/harmonyos-ai-skill
 mkdir -p ~/.claude/skills
@@ -55,7 +59,28 @@ ln -s ~/src/harmonyos-ai-skill/harmonyos-development ~/.claude/skills/harmonyos-
 # Restart Claude Code, then ask: "What skills are available?"
 ```
 
-Using a different tool? See [all install options below](#installation).
+### 🐧 Linux
+
+```bash
+git clone https://github.com/DengShiyingA/harmonyos-ai-skill.git ~/src/harmonyos-ai-skill
+mkdir -p ~/.claude/skills
+ln -s ~/src/harmonyos-ai-skill/harmonyos-development ~/.claude/skills/harmonyos-development
+# Restart Claude Code, then ask: "What skills are available?"
+```
+
+### 🪟 Windows (PowerShell 7+)
+
+```powershell
+# First enable "Developer Mode" (one-time): Settings → Privacy & security → For developers → toggle on
+git clone https://github.com/DengShiyingA/harmonyos-ai-skill.git $HOME\src\harmonyos-ai-skill
+New-Item -ItemType Directory -Force $HOME\.claude\skills | Out-Null
+New-Item -ItemType SymbolicLink -Path $HOME\.claude\skills\harmonyos-development -Target $HOME\src\harmonyos-ai-skill\harmonyos-development
+# Restart Claude Code, then ask: "What skills are available?"
+```
+
+> Don't want to enable Developer Mode? Replace the `New-Item -ItemType SymbolicLink ...` line with `Copy-Item -Recurse $HOME\src\harmonyos-ai-skill\harmonyos-development $HOME\.claude\skills\` (but you'll need to re-copy after upstream updates).
+
+Using a different tool (Cursor / Copilot / ChatGPT...)? See [all install options below](#installation).
 
 ---
 
