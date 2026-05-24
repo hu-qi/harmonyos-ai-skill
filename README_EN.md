@@ -6,13 +6,14 @@
 
 # 🧠 HarmonyOS AI Skill
 
-### A HarmonyOS NEXT (鸿蒙) knowledge pack for 11+ AI coding assistants
+### The largest HarmonyOS knowledge pack for AI coding — make 11+ AI tools actually write ArkTS
 
-*"Make your AI write ArkTS / ArkUI like an engineer who's read every Huawei doc."*
+*4,327 lines of battle-tested knowledge · 237 sections · 105+ code examples · covers HarmonyOS 6.1 (API 23) / 6.1.1 (API 24)*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
-[![HarmonyOS](https://img.shields.io/badge/HarmonyOS-NEXT-black)](https://developer.huawei.com/consumer/cn/)
-[![ArkTS](https://img.shields.io/badge/ArkTS-Ready-blue)](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-get-started-V5)
+[![HarmonyOS](https://img.shields.io/badge/HarmonyOS-6.1%20%2F%206.1.1-black)](https://developer.huawei.com/consumer/cn/)
+[![ArkTS](https://img.shields.io/badge/ArkTS-API%2022--24-blue)](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-get-started-V5)
+[![Kits](https://img.shields.io/badge/Kits-60+-orange)](#whats-inside-the-knowledge)
 [![AI Tools](https://img.shields.io/badge/AI_Tools-11+-purple)](#supported-ai-tools)
 [![AGENTS.md](https://img.shields.io/badge/AGENTS.md-Standard-green)](https://agents.md)
 
@@ -26,9 +27,10 @@
 **Ask Claude to edit `module.json5` — it writes `package.json`.**
 **Ask Copilot about `@ObjectLink` — it says "that API doesn't exist."**
 
-The problem isn't the AI — it's that no one's ever fed it HarmonyOS knowledge.
+General-purpose LLMs have never systematically learned HarmonyOS — their training data barely contains ArkTS, the Stage model, or HarmonyOS Kits.
+So I distilled the entire Huawei official documentation, best practices, and API reference into a **4,327-line knowledge pack you drop straight into the LLM's context**: ArkTS strict-mode syntax, all 60+ Kits, glassmorphism effects, AI super frame, app continuation, PersistenceV2 — it's all in here.
 
-**So I did. One Markdown source → drop-in configs for 11+ AI tools.**
+**One Markdown source → drop-in configs for 11+ AI tools.** Once installed, your AI writes HarmonyOS-correct code like an engineer who's actually read the docs — instead of turning `@State` into `useState`.
 
 <br/>
 
@@ -57,6 +59,19 @@ Using a different tool? See [all install options below](#installation).
 
 ---
 
+## Why you need this
+
+| Question | Plain AI | With the skill installed |
+|---|---|---|
+| What do I write the UI in? | "Use React Native" | "Use ArkUI — `@Component struct` declarative components" |
+| How do I manage state? | "useState / Redux" | "`@State` / `@ObjectLink`; for new code use V2 decorators (stable in API 23)" |
+| Page navigation? | "react-router or Vue Router" | "`Navigation` + `NavPathStack.pushPath()` — Router is being phased out" |
+| HTTP requests? | "axios / fetch" | "`@kit.NetworkKit`'s `http.createHttp()`, or the `@ohos/axios` third-party lib" |
+| Camera permission? | A snippet of Android Manifest | `module.json5` config + 3-step `abilityAccessCtrl` flow with settings fallback |
+| Background audio? | Vague hints about a service | "You MUST create AVSession + request `KEEP_BACKGROUND_RUNNING` long-task" |
+
+The knowledge isn't in the AI's head — you have to feed it in. **That's what this repo does.**
+
 Write the knowledge once — [`harmonyos-development/SKILL.md`](./harmonyos-development/SKILL.md) — and install it into every major AI coding tool via pre-built drop-in files.
 
 <details>
@@ -67,6 +82,7 @@ A skill is a chunk of domain knowledge (in Markdown) that an AI coding tool load
 </details>
 
 **Requirements:** `git` and `curl` (or just copy-paste for web tools). No other dependencies.
+**Freshness:** Tracks official release cadence. Currently covers HarmonyOS 6.1.1 (API 24) Beta (May 2026).
 
 ## What's inside the knowledge
 
@@ -74,19 +90,19 @@ A skill is a chunk of domain knowledge (in Markdown) that an AI coding tool load
 <img src="./assets/en/knowledge-map.svg" alt="Knowledge architecture" width="100%"/>
 </div>
 
-The skill teaches the AI everything needed to read, write, review, and debug HarmonyOS NEXT native apps (~4200 lines of dense, actionable knowledge, 237 sections, 105+ code examples):
+The skill teaches the AI everything needed to read, write, review, and debug HarmonyOS NEXT native apps (**4,327 lines of dense, actionable knowledge, 237 sections, 105+ code examples**):
 
 - **Language & framework** — ArkTS strictness rules, naming conventions, 13 high-performance coding rules (const, TypedArrays, HashMap, lazy import, etc.), coding style guide
 - **App architecture** — Stage model: UIAbility, ExtensionAbility, AbilityStage, WindowStage lifecycles; module.json5 / app.json5 configuration
 - **ArkUI components** — component lifecycle (7 callbacks + execution order), layout containers with performance comparison, `@Reusable` component reuse, **Tabs navigation**, **Swiper carousel**, **WaterFlow**, **Grid**, **TextInput**, **AlertDialog/Toast**, 10 form components quick reference, AttributeModifier reusable styles
-- **State management** — V1 decorators (`@State`, `@Prop`, `@Link`, `@Provide`/`@Consume`, `@Observed` + `@ObjectLink`, `@Watch`) + V2 decorators (`@ComponentV2`, `@Local`, `@ObservedV2` + `@Trace`, `@Monitor`) + StateStore global state, with observation depth rules, batch update tips, decorator selection priority
-- **Navigation** — `Navigation` + `NavPathStack` full API, `Router` basic routing, `App Linking` deep links
+- **State management (V2 now stable)** — V1 decorators (`@State`/`@Prop`/`@Link`/`@Provide`-`@Consume`/`@Observed`+`@ObjectLink`/`@Watch`) + V2 decorators (`@ComponentV2`/`@Local`/`@Param`+`@Once`/`@Param`+`@Event`/`@ObservedV2`+`@Trace`/`@Monitor`) + **AppStorageV2** + **PersistenceV2** (auto-persisted) + StateStore global state, with observation depth rules, batch update tips, decorator selection priority
+- **Navigation** — `Navigation` + `NavPathStack` full API, `Router` basic routing (deprecated, with migration notes), `App Linking` deep links
 - **Animation** — `animateTo()`, `.animation()`, `keyframeAnimateTo()`, Curve enum, spring curves, `geometryTransition` shared element transitions, animation performance tips
 - **List operations** — pull-down refresh (Refresh), load-more (onReachEnd), swipe-to-delete (swipeAction), drag reorder, ListItemGroup sticky headers, scroll-to-bottom, maintain scroll position
 - **Performance** — `LazyForEach` + IDataSource, `@Reusable`, `cachedCount`, `onVisibleAreaChange`, cold start optimization (lazy import), memory optimization (LRUCache/Purgeable)
 - **HarmonyOS Kits** — 60+ Kits across 7 categories with import keys + code examples
-- **Kit detailed sections** — Camera Kit, Audio Kit, AVPlayer/AVRecorder, Image Kit (decode/transform/encode), Scan Kit, Account Kit, Payment Kit, Push Kit, Map Kit, Core Vision Kit (OCR/face/segmentation), Form Kit (service cards), AVSession Kit, Location Kit, Notification Kit, Share Kit
-- **Data persistence** — relationalStore (SQLite CRUD), preferences (KV storage), fileIo (file R/W), DocumentViewPicker (file picker)
+- **Kit detailed sections** — Camera Kit (incl. API 24 "Follow the Person" subject tracking), Audio Kit, AVPlayer/AVRecorder, Image Kit (decode/transform/encode), Scan Kit, Account Kit, Payment Kit, Push Kit, Map Kit, **Weather Service Kit**, Core Vision Kit (OCR/face/segmentation), Form Kit (service cards), AVSession Kit, Location Kit, Notification Kit, Share Kit
+- **Data persistence** — relationalStore (SQLite CRUD + sendable), preferences (KV storage), fileIo (file R/W), DocumentViewPicker (file picker)
 - **Networking** — HTTP requests, WebSocket, network connectivity monitoring, background upload/download (request.agent with resume)
 - **Concurrency** — TaskPool vs Worker comparison, `@Concurrent` rules, `@Sendable` shared-heap mechanism
 - **System capabilities** — permission request full flow (check→request→settings fallback), immersive window (expandSafeArea), dark mode (resource qualifiers/colorMode), keyboard adaptation (KeyboardAvoidMode), screen orientation, clipboard, custom fonts, desktop shortcuts, gesture conflict resolution (hitTestBehavior/priorityGesture), EventHub, startAbilityByType
@@ -94,9 +110,9 @@ The skill teaches the AI everything needed to read, write, review, and debug Har
 - **Cross-device** — app continuation (onContinue/onCreate data migration), cross-module resource access (HAR/HSP)
 - **Engineering quality** — security coding rules + network security config (HTTPS/cert pinning), code obfuscation (ArkGuard), arkxtest testing (JsUnit + UiTest), 18 common gotchas
 - **Third-party libraries** — @ohos/axios (HTTP client), @ohos/pulltorefresh, @ohos/lottie (JSON animation), @ohos/imageknife (image caching), dayjs (date utils)
-- **Latest version support** — HarmonyOS 6.1 (API 23, stable 2026/4) / 6.1.1 (API 24, beta) — Navigation routing stack binding, Menu anchorPosition, UDMF/drag/crypto C APIs, relationalStore sendable enhancement, AI super frame, Camera Kit "Follow the Person" subject tracking, AppStorageV2, PersistenceV2, Weather Service Kit
+- **API 23 / 24 new features** — Navigation routing stack binding, Menu anchorPosition, UDMF/drag/crypto C APIs, relationalStore sendable enhancement, AI super frame, Camera Kit "Follow the Person" subject tracking, delayed preview, DevEco Studio API 24 support
 - **Multi-device** — responsive breakpoints (xs/sm/md/lg/xl), GridRow/GridCol, foldable support
-- **Packaging & tooling** — HAP/HSP/HAR, atomic services, DevEco Studio 6.x (hvigor), OHPM, ArkCompiler
+- **Packaging & tooling** — HAP/HSP/HAR, atomic services, DevEco Studio 6.1+ (hvigor), OHPM, ArkCompiler
 
 ---
 
