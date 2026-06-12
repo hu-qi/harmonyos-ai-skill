@@ -8,7 +8,7 @@
 
 ### The largest HarmonyOS knowledge pack for AI coding — make 11+ AI tools actually write ArkTS
 
-*4,381 lines of battle-tested knowledge · 241 sections · 105+ code examples · production baseline API 24, tracking HarmonyOS 7 / API 26 Beta1*
+*4,417 lines of battle-tested knowledge · 241 sections · 105+ code examples · production baseline API 24, tracking HarmonyOS 7 / API 26 Beta1*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
 [![HarmonyOS](https://img.shields.io/badge/HarmonyOS-6.1%20%2F%206.1.1-black)](https://developer.huawei.com/consumer/cn/)
@@ -28,7 +28,7 @@
 **Ask Copilot about `@ObjectLink` — it says "that API doesn't exist."**
 
 General-purpose LLMs have never systematically learned HarmonyOS — their training data barely contains ArkTS, the Stage model, or HarmonyOS Kits.
-So I distilled the entire Huawei official documentation, best practices, and API reference into a **4,381-line knowledge pack you drop straight into the LLM's context**: ArkTS strict-mode syntax, all 60+ Kits, glassmorphism effects, AI super frame, app continuation, PersistenceV2 — it's all in here.
+So I distilled the entire Huawei official documentation, best practices, and API reference into a **4,417-line knowledge pack you drop straight into the LLM's context**: ArkTS strict-mode syntax, all 60+ Kits, glassmorphism effects, AI super frame, app continuation, PersistenceV2 — it's all in here.
 
 **One Markdown source → drop-in configs for 11+ AI tools.** Once installed, your AI writes HarmonyOS-correct code like an engineer who's actually read the docs — instead of turning `@State` into `useState`.
 
@@ -117,7 +117,7 @@ A skill is a chunk of domain knowledge (in Markdown) that an AI coding tool load
 <img src="./assets/en/knowledge-map.svg" alt="Knowledge architecture" width="100%"/>
 </div>
 
-The skill teaches the AI everything needed to read, write, review, and debug HarmonyOS NEXT native apps (**4,381 lines of dense, actionable knowledge, 241 sections, 105+ code examples**):
+The skill teaches the AI everything needed to read, write, review, and debug HarmonyOS NEXT native apps (**4,417 lines of dense, actionable knowledge, 241 sections, 105+ code examples**):
 
 - **Language & framework** — ArkTS strictness rules, naming conventions, 13 high-performance coding rules (const, TypedArrays, HashMap, lazy import, etc.), coding style guide
 - **App architecture** — Stage model: UIAbility, ExtensionAbility, AbilityStage, WindowStage lifecycles; module.json5 / app.json5 configuration

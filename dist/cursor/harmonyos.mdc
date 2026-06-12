@@ -95,21 +95,57 @@ Covers HarmonyOS 6.1 (API 23, stable) / 6.1.1 (API 24, Release) / HarmonyOS 7 de
 
 **Status:** developer Beta, not the default production baseline. Mention API 26 features only when the user asks about HarmonyOS 7, API 26, HDC 2026, preview adaptation, or Beta1 capabilities. For production code, prefer API 24 Release unless the project explicitly targets API 26 preview.
 
-**Developer kit baseline:** HarmonyOS SDK **26.0.0 Beta1** (OpenHarmony SDK `Ohos_sdk_public 26.0.0.23`, API Version 26.0.0 Beta1) and DevEco Studio **26.0.0 Beta1 (26.0.0.461)**.
+**Developer kit baseline:** HarmonyOS SDK **26.0.0 Beta1** (OpenHarmony SDK `Ohos_sdk_public 26.0.0.23`, API Version 26.0.0 Beta1) and DevEco Studio **26.0.0 Beta1 (26.0.0.461)**. Toolchain: HarmonyOS Emulator **26.0.0.200**, Hvigor/hvigorw **6.26.1**, ohpm **26.0.0.410**, Node.js **24.14.1**, hstack **6.0.0**, `compileSdkVersion: "26.0.0"`, `targetSdkVersion: "4.0.0(10)~26.0.0"`.
 
 **High-value API 26 Beta1 changes:**
 - **Ability Kit** — AgentCard support; ArkTS script-based app Skill development; package-name + clone-index app name lookup; ArkTS APIs for script management; C APIs for `ModularObjectExtensionAbility`.
+- **Accessibility Kit** — system care mode integration for elder-friendly app experiences.
 - **Accessory Kit** — new Kit for accessory wake-up, system service linkage, on-demand scheduling, and secure trust management.
+- **Account Kit** — `LoginWithHuaweiIDButton` supports custom multilingual text and loading animation.
+- **AR Engine** — C API camera flash control; ArkTS preview stream image access; 3D Gaussian model loading; ArkTS/C APIs for external camera and sensor data.
 - **ArkUI / UI Design** — system material configuration for Toggle, Tips, Toast, dialogs, menus, popups, custom dialogs, half modals, and Popup; component-level immersive light perception; global reuse pools for `@Reusable` / `@ReusableV2`; standard floating windows; title-area customization updates.
 - **ArkWeb** — Chromium kernel upgraded from 132 to 144; new security configuration options.
+- **AVCodec Kit** — H.265 hardware encoder CBRHQ mode; Audio Vivid encoding and C APIs.
+- **AVSession Kit** — new extra-key enum values for scenario-specific AVSession metadata.
+- **Background Tasks Kit** — reminder countdown instances add `repeatInterval` and `repeatCount`.
 - **Core File Kit** — `UNCACHE` open option, recursive `listFileExt`, mmap-based file mapping, and sharing an app sandbox directory as system-visible.
-- **Device Security Kit** — enhanced Star Shield confidential risk-control engine, unified risk-control credentials, privacy policy controls for camera/microphone/location, and file-event subscription/filtering.
-- **Graphics Accelerate Kit** — game prelaunch feature to improve startup experience.
-- **Notification Kit** — stronger notification management/display, including half-modal notification settings entry.
 - **Core Vision Kit** — image super-resolution and semantic text search over images.
-- **FAST Kit** — real-number FFT and inverse FFT.
+- **Data Augmentation Kit** — mail intelligence handler for classification, summarization, and todo extraction.
+- **Device Security Kit** — enhanced Star Shield confidential risk-control engine, unified risk-control credentials, privacy policy controls for camera/microphone/location, and file-event subscription/filtering.
+- **Driver Development Kit** — query external USB hubs and develop user-mode drivers.
+- **Enterprise Data Guard Kit** — file classification policy APIs `getPolicy` and `isKia`.
+- **Enterprise Space Kit** — query dual-space state and determine whether the workspace is enterprise space.
+- **FAST Kit** — real-number FFT and inverse FFT; intelligent sequence prediction.
+- **Graphics Accelerate Kit** — game prelaunch feature to improve startup experience.
+- **Image Kit** — metadata classes for GIF/JFIF/TIFF/PNG/AVIS plus XMP metadata.
+- **Input Kit** — keyboard and mouse input event injection.
+- **Live View Kit** — auxiliary-area template with percentage progress ring.
+- **NDK / JSVM** — create `ArrayBuffer` from external memory.
+- **NearLink Kit** — `startScan` scans all discoverable nearby NearLink devices.
+- **Network Boost Kit** — `netBoost.setDataFlowDesc` sets flow descriptions from five-tuple data.
+- **Notification Kit** — stronger notification management/display, including half-modal notification settings entry.
+- **Online Authentication Kit** — DID (Decentralized Identifier) key generation, credential import/query/delete, and data signing.
+- **PDF Kit** — convert specified regions across multiple pages into one image.
+- **Performance Analysis Kit** — gray release fault-log collection and HiAppEvent app-freeze warning subscriptions.
+- **Preview Kit** — file acceleration scanning, preload strategy customization, availability query, and file-operation event reporting.
+- **Push Kit** — Live View push messages support Wearable devices.
+- **Remote Communication Kit** — `HttpVersionSelectCallback` for HTTP version selection, `HMS_Rcp_SetRequestGetDataCallback()` for streaming upload, `HMS_Rcp_SetFormOrder()` for ordered forms, and QUIC C API.
+- **Scenario Fusion Kit** — scenario sharing Button supports image, video, and text.
+- **Share Kit** — phone-to-PC/2in1/tablet tap sharing can expose tap position on the receiving side.
 - **Spatial Recon Kit** — 3DGS gaussian editing and spatial photo generation from a single photo.
 - **Scan Kit** — query support for default/custom scan UI on the current device.
+
+**API 26 behavior and UX changes to watch during adaptation:**
+- **Ability Kit** — public package-change common events (`COMMON_EVENT_PACKAGE_ADDED`, `REMOVED`, `CHANGED`, `CACHE_CLEARED`) add controls for In-House apps when `targetSdkVersion >= 26.0.0`; In-House apps must configure `allowListenBundleChangedEvent` in `app.json5` for third-party listeners.
+- **ArkTS / JSVM** — Chromium/V8 core upgrades 132 → 144; async function type detection is fixed; Wasm jitless default behavior changes; `fastConvertToJSObject` now preserves sibling text nodes when parsing XML.
+- **ArkUI** — `NodeAdapter.onAttachToNode`, mouse `rawDeltaX/rawDeltaY`, `LayoutPolicy.matchParent`, `EmbeddedComponent` focus, `WithTheme`, `queryNavDestinationInfo`, `NODE_SWIPER_EVENT_ON_CONTENT_DID_SCROLL`, and shadow blur radius behavior have adaptation-impacting changes.
+- **Permissions** — `ohos.permission.READ_IMAGEVIDEO`, `getUidRxBytes`, `getUidTxBytes`, and general permission policy behavior change under API 26 rules.
+- **UX** — form controls minimum touch target changes from 28vp to 32vp for Button/Button-style Toggle/Select/Chip/ChipGroup; built-in text line breaking and small-language line height are optimized; Dialog, Toast, AlphabetIndexer, and text selection menu enable immersive system material by default. Disable globally with `metadata` name `ohos.arkui.UIMaterial.state` value `disable`, or per component with `uiMaterial.Material.empty`.
+
+**DevEco Studio 26.0.0 Beta1 additions:**
+- AI coding: custom Agent token usage display, conversation rollback, built-in Inline Chat commands such as File Comments and Parameter Validation, `UI Verification` tool, and custom Commands.
+- Editing/debugging: API 26.0.0 projects, Load/Unload Modules, ArkUI state-variable relation viewer, Code Scanner resource-leak checks, custom Clang-Tidy, ACL permission requests, 8-breakpoint preview, Car multi-screen emulator, scenario simulation, remote emulator control, Native debug startup acceleration, device projection, SQL-highlight database debugging, dump-file stack parsing, HiLog tag filtering, AppAnalyzer report diagnosis, and diagnostics for OOM/app-freeze/resource leaks.
+- Build/release: `apiCompatibilityCheck`, `tsImportSoCheck`, module `nativeLib.enableSoDirCollection`, `syncNative`, Hvigor `getAllDependencyInfo`, AppGallery package re-signing, Linux emulator support, and ohpmrc `auto_skip_install`, `metadata_cache_effective`, `metadata_cache`, plus exact-version metadata queries.
 
 ## Project layout (Stage model)
 
