@@ -1,6 +1,13 @@
 name: Build dist
 
 on:
+  pull_request:
+    paths:
+      - 'harmonyos-development/**'
+      - 'scripts/build-dist.sh'
+      - 'scripts/validate-skill.sh'
+      - 'scripts/check-frontmatter.py'
+      - '.github/workflows/build-dist.yml'
   push:
     branches:
       - main
@@ -37,6 +44,7 @@ jobs:
         run: bash scripts/build-dist.sh
 
       - name: Commit generated dist
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           if git diff --quiet -- dist; then
             echo "dist is already up to date."
